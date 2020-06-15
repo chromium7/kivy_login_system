@@ -1,0 +1,162 @@
+<BackgroundColor@Widget>:
+    background_color: 0.3, 0.3, 0.7, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Lab@Label+BackgroundColor>:
+<But@Button+BackgroundColor>:
+
+<FloatLayout>
+    canvas.before:
+        BorderImage:
+            source: "watercolor.jpg"
+            pos: self.pos
+            size: self.size
+
+<ScreenManagement>:
+    MainScreen:
+        name: "main"
+    RegisterScreen:
+        name: "register"
+    AccountScreen:
+        name: "account"
+
+
+<MainScreen>:
+    main_email: main_email
+    main_pw: main_pw
+
+    FloatLayout:
+        Label:
+            text: "Login to Your Account, kind sir"
+            color: 0, 0, 0, 1
+            size_hint: 0.6, 0.15
+            font_size: (root.width ** 2 + root.height ** 2) / 12 ** 4
+            pos_hint: {"center_x": 0.5, "top": 0.98}
+
+        Lab:
+            text: "Email:"
+            size_hint: 0.35, 0.15
+            font_size: (root.width ** 2 + root.height ** 2) / 14 ** 4
+            pos_hint: {"x": 0.1, "top": 0.8}
+
+        TextInput:
+            id: main_email
+            size_hint: 0.4, 0.15
+            multiline: False
+            pos_hint: {"x": 0.5, "top": 0.8}
+            font_size: (root.width ** 2 + root.height ** 2) / 14**4
+
+        Lab:
+            text: "Password:"
+            size_hint: 0.35, 0.15
+            font_size: (root.width ** 2 + root.height ** 2) / 14 ** 4
+            pos_hint: {"x": 0.1, "top": 0.6}
+
+        TextInput:
+            id: main_pw
+            size_hint: 0.4, 0.15
+            password: True
+            multiline: False
+            font_size: (root.width ** 2 + root.height ** 2) / 14 ** 4
+            pos_hint: {"x": 0.5, "top": 0.6}
+
+        Button:
+            text: "[i]Don't have an account? Register[/i]"
+            markup: True
+            pos_hint: {"center_x": 0.5, "top": 0.35}
+            size_hint: 0.4, 0.1
+            font_size: (root.width ** 2 + root.height ** 2) / 16 ** 4
+            on_press:
+                root.manager.transition.direction = "right"
+                root.manager.current = "register"
+
+        But:
+            text: "[b]Login[/b]"
+            markup: True
+            pos_hint: {"center_x": 0.5, "top": 0.2}
+            size_hint: 0.2, 0.15
+            font_size: (root.width ** 2 + root.height ** 2) / 14 ** 4
+            on_press: root.submit()
+
+
+<RegisterScreen>:
+    r_name: r_name
+    r_email: r_email
+    r_pw: r_pw
+    FloatLayout:
+        Label:
+            text: "Create An Account"
+            color: 0.3, 0.1, 0.15, 1
+            font_size: (root.width ** 2 + root.height ** 2)/ 12 **4
+            size_hint: 0.3, 0.1
+            pos_hint: {"top": 0.98, "center_x": 0.5}
+
+        Lab:
+            text: "Name:"
+            size_hint: 0.4, 0.1
+            font_size: (root.width ** 2 + root.height ** 2)/ 14 ** 4
+            pos_hint: {"x": 0.1, "top": 0.85}
+
+        TextInput:
+            id: r_name
+            size_hint: 0.4, 0.1
+            font_size: (root.width ** 2 + root.height ** 2)/ 14 ** 4
+            pos_hint: {"x": 0.5, "top": 0.85}
+
+        Lab:
+            text: "Email:"
+            size_hint: 0.4, 0.1
+            font_size: (root.width ** 2 + root.height ** 2)/ 14 ** 4
+            pos_hint: {"x": 0.1, "top": 0.7}
+
+        TextInput:
+            id: r_email
+            size_hint: 0.4, 0.1
+            font_size: (root.width ** 2 + root.height ** 2)/ 14 ** 4
+            pos_hint: {"x": 0.5, "top": 0.7}
+
+        Lab:
+            text: "Password:"
+            size_hint: 0.4, 0.1
+            font_size: (root.width ** 2 + root.height ** 2)/ 14 ** 4
+            pos_hint: {"x": 0.1, "top": 0.55}
+
+        TextInput:
+            id: r_pw
+            size_hint: 0.4, 0.1
+            font_size: (root.width ** 2 + root.height ** 2)/ 14 ** 4
+            pos_hint: {"x": 0.5, "top": 0.55}
+
+        Button:
+            text: "Already have an account? Login"
+            font_size: (root.width ** 2 + root.height ** 2)/ 16 ** 4
+            size_hint: 0.4, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.4}
+            on_press:
+                root.clear()
+                root.manager.transition.direction = "left"
+                root.manager.current = "main"
+
+        But:
+            text: "Register a new account!"
+            font_size: (root.width ** 2 + root.height ** 2)/ 14 ** 4
+            size_hint: 0.4, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.25}
+            on_press:
+                root.submit()
+
+
+<AccountScreen>:
+    FloatLayout:
+        Label:
+            markup: True
+            text: "[b]YOU LOGGED IN! Nice la[/b]"
+            color: 0, 0, 0, 1
+            font_size: (root.width ** 2 + root.height ** 2) / 12 ** 4
+            size_hint: 0.5, 0.5
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
